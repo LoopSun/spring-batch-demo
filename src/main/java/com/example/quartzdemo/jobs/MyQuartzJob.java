@@ -1,9 +1,11 @@
 package com.example.quartzdemo.jobs;
 
+import com.example.quartzdemo.services.SimpleHelloService;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.text.SimpleDateFormat;
@@ -17,8 +19,19 @@ public class MyQuartzJob extends QuartzJobBean {
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
+    private String name;
+
+    @Autowired
+    SimpleHelloService simpleHelloService;
+
+    //接受JobDetail传递参数
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-        logger.info("Quartz: ******{}******", dateFormat.format(new Date()));
+        logger.info("{} " + this.name, dateFormat.format(new Date()));
+//        logger.info("{}", simpleHelloService.hello("QuartzJob"));
     }
 }

@@ -22,18 +22,18 @@ public class StaticJob {
 //    固定每隔10s执行一次
     @Scheduled(fixedRate = 10 * SECOND)
     public void fixedRateJob() {
-        logger.info("{}", simpleHelloService.hello("fixedRateJob"));
+        logger.info("{}", simpleHelloService.hello("Spring Boot: fixedRateJob"));
     }
 
 //    固定延迟10s执行一次
     @Scheduled(fixedDelay = 10 * SECOND)
     public void fixedDelayJob() {
-        logger.info("{}", simpleHelloService.hello("fixedDelayJob"));
+        logger.info("{}", simpleHelloService.hello("Spring Boot: fixedDelayJob"));
     }
 
 //    crontab方式定义更灵活的定时方式
     @Scheduled(cron = "*/10 * * * * *")
     public void cronJob() {
-        logger.info("{}", simpleHelloService.hello("cronJob"));
+        logger.info("{}", simpleHelloService.hello("Spring Boot: cronJob"));
     }
 }

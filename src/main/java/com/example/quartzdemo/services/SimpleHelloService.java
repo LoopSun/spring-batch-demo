@@ -11,6 +11,6 @@ public class SimpleHelloService {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     public String hello(String name) {
-        return dateFormat.format(new Date()) + " Hello " + name;
+        return dateFormat.format(new Date()) + name;
     }
 }
