@@ -17,3 +17,5 @@ spring:
     jdbc:
       initialize-schema: always
       schema: classpath:/db/migrations/V1__init.sql
+  batch:
+    initialize-schema: always
