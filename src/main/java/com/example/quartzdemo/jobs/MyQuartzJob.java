@@ -1,5 +1,6 @@
 package com.example.quartzdemo.jobs;
 
+import com.example.quartzdemo.services.QuartzJobManager;
 import com.example.quartzdemo.services.SimpleHelloService;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -24,6 +25,9 @@ public class MyQuartzJob extends QuartzJobBean {
     @Autowired
     SimpleHelloService simpleHelloService;
 
+    @Autowired
+    QuartzJobManager quartzJobManager;
+
     //接受JobDetail传递参数
     public void setName(String name) {
         this.name = name;
@@ -33,5 +37,27 @@ public class MyQuartzJob extends QuartzJobBean {
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         logger.info("{} " + this.name, dateFormat.format(new Date()));
 //        logger.info("{}", simpleHelloService.hello("QuartzJob"));
-    }
+//        quartzJobManager.addJob(
+//                        "myjob2",
+//                        "myjob",
+//                        "myjob2Trigger",
+//                        "myjobTrigger",
+//                        MyQuartzJob.class,
+//                        "0/3 * * * * ?"
+//                );
+//        quartzJobManager.modifyJob(
+//                "myjob2",
+//                "myjob",
+//                "myjob2Trigger",
+//                "myjobTrigger",
+//                "0/20 * * * * ?");
+//
+//    }
+            quartzJobManager.removeJob(
+                    "myjob2",
+                    "myjob",
+                    "myjob2Trigger",
+                    "myjobTrigger");
+
+}
 }
